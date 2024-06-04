@@ -8,21 +8,20 @@ from phi.document.reader.pdf import PDFReader
 from phi.document.reader.website import WebsiteReader
 from phi.utils.log import logger
 
-from assistant import get_llm_os  # type: ignore
+from assistant import get_llm_os  
 
 nest_asyncio.apply()
 
 st.set_page_config(
-    page_title="LLM OS",
+    page_title="PESU Jago",
     page_icon=":orange_heart:",
 )
-st.title("LLM OS")
-st.markdown("##### :orange_heart: built using [phidata](https://github.com/phidatahq/phidata)")
+st.title("PESU Jago")
 
 
 def main() -> None:
     # Get LLM Model
-    llm_id = st.sidebar.selectbox("Select LLM", options=["gpt-4o", "gpt-4-turbo"]) or "gpt-4o"
+    llm_id = st.sidebar.selectbox("Select LLM", options=["gpt-4o", "gpt-4-turbo", "gpt-3.5-turbo"]) or "gpt-4o"
     # Set llm_id in session state
     if "llm_id" not in st.session_state:
         st.session_state["llm_id"] = llm_id
@@ -148,6 +147,22 @@ def main() -> None:
         st.session_state["investment_assistant_enabled"] = investment_assistant
         investment_assistant_enabled = investment_assistant
         restart_assistant()
+    
+    #Enable Project Assistant
+    if "project_assistant_enabled" not in st.session_state:
+        st.session_state["project_assistant_enabled"] = False
+    # Get project_assistant_enabled from session state if set
+    project_assistant_enabled = st.session_state["project_assistant_enabled"]
+    # Checkbox for enabling web search
+    project_assistant = st.sidebar.checkbox(
+        "Project Assistant",
+        value=project_assistant_enabled,
+        help="Enable the project assistant.",
+    )
+    if project_assistant_enabled != project_assistant:
+        st.session_state["project_assistant_enabled"] = project_assistant
+        project_assistant_enabled = project_assistant
+        restart_assistant()
 
     # Get the assistant
     llm_os: Assistant
@@ -163,6 +178,7 @@ def main() -> None:
             python_assistant=python_assistant_enabled,
             research_assistant=research_assistant_enabled,
             investment_assistant=investment_assistant_enabled,
+            project_assistant=project_assistant_enabled,
         )
         st.session_state["llm_os"] = llm_os
     else:
@@ -279,6 +295,7 @@ def main() -> None:
                 python_assistant=python_assistant_enabled,
                 research_assistant=research_assistant_enabled,
                 investment_assistant=investment_assistant_enabled,
+                project_assistant=project_assistant_enabled,
                 run_id=new_llm_os_run_id,
             )
             st.rerun()

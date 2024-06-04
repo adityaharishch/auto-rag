@@ -11,6 +11,7 @@ from phi.tools.shell import ShellTools
 from phi.tools.calculator import Calculator
 from phi.tools.duckduckgo import DuckDuckGo
 from phi.tools.yfinance import YFinanceTools
+# from phi.tools.projectassisstant import ProjectTools
 from phi.tools.file import FileTools
 from phi.llm.openai import OpenAIChat
 from phi.knowledge import AssistantKnowledge
@@ -29,7 +30,7 @@ if not scratch_dir.exists():
 
 
 def get_llm_os(
-    llm_id: str = "gpt-4o",
+    llm_id: str = "gpt-3.5-turbo",
     calculator: bool = False,
     ddg_search: bool = False,
     file_tools: bool = False,
@@ -38,6 +39,7 @@ def get_llm_os(
     python_assistant: bool = False,
     research_assistant: bool = False,
     investment_assistant: bool = False,
+    project_assistant: bool = False,
     user_id: Optional[str] = None,
     run_id: Optional[str] = None,
     debug_mode: bool = True,
@@ -208,7 +210,7 @@ def get_llm_os(
             </report_format>
             """
             ),
-            tools=[YFinanceTools(stock_price=True, company_info=True, analyst_recommendations=True, company_news=True)],
+            # tools=[YFinanceTools(stock_price=True, company_info=True, analyst_recommendations=True, company_news=True)],
             # This setting tells the LLM to format messages in markdown
             markdown=True,
             add_datetime_to_instructions=True,
@@ -223,6 +225,68 @@ def get_llm_os(
                 "Never provide investment advise without the investment report.",
             ]
         )
+    
+    if project_assistant:
+        _project_assistant = Assistant(
+            name="Project Assistant",
+            role="Provide comprehensive insights and updates on a specific project",
+            llm=OpenAIChat(model=llm_id),
+            description="As a Senior Project Manager, you are tasked with providing detailed, actionable insights on the progress and performance of a critical project to key stakeholders. The Project Assistant is trained on project-specific documents including the Business Requirement Document, performance reviews, and milestone reports.",
+            instructions=[
+                "Retrieve and analyze project-specific data from trained documents such as BRD, performance data, and milestone reports.",
+                "Generate a detailed report based on the <report_format> below, incorporating data-driven insights and updates.",
+                "Provide thoughtful, strategic recommendations for future project steps based on the analyzed data.",
+                "Ensure responses and reports include quantitative and qualitative metrics to support project tracking and decision-making.",
+                "Maintain high-quality, clear communication to assist stakeholders in understanding the project's progress and strategic value."
+            ],
+            expected_output=dedent(
+                """\
+            <report_format>
+            ## [Project Name]: Comprehensive Project Update Report
+
+            ### **Overview**
+            {Provide a concise introduction of the project, emphasizing its strategic importance and current status based on the BRD and other project documents.}
+
+            ### Milestones Achieved
+            {Detail the project's achieved milestones, current phase, and deliverables completed, drawing from milestone reports and performance data.}
+            - Current Phase: {current phase of the project}
+            - Key Deliverables Completed: {list key deliverables}
+            - Upcoming Milestones: {upcoming milestones}
+            - Budget Spent: {amount spent} of {total budget}
+
+            ### Performance Metrics
+            {Analyze and report on the project's performance, including completion percentages, adherence to timelines, and resource utilization, supported by performance data.}
+            - Completion Percentage: {completion percentage}
+            - On-Time Delivery: {on-time delivery metrics}
+            - Resource Utilization: {resource utilization metrics}
+
+            ### Challenges and Strategic Adjustments
+            {Summarize challenges encountered, adjustments made to the project plan, and strategic decisions, using data and insights from project performance reviews.}
+
+            ### [Summary]
+            {Provide a summary of the current state of the project, key insights, and takeaways from the data analyzed.}
+
+            ### [Recommendations]
+            {Offer strategic and actionable recommendations for the next steps of the project, supported by analyzed data and projected outcomes.}
+
+            </report_format>
+            """
+            ),
+            tools=[YFinanceTools()],
+
+            markdown=True,
+            add_datetime_to_instructions=True,
+            debug_mode=debug_mode,
+        )
+        team.append(_project_assistant)
+        extra_instructions.extend(
+            [
+                "To obtain a project update or detailed report, delegate the task to the `Project Assistant`.",
+                "Ensure that the returned report follows the <report_format> and is delivered without additional commentary like 'here is the report'.",
+                "Respond to specific inquiries using detailed information from the project's training data and generated reports.",
+                "Provide insights and updates consistently within the framework of the provided report, ensuring clarity and depth for stakeholder decision-making."
+            ]
+        )
 
     # Create the LLM OS Assistant
     llm_os = Assistant(
@@ -232,25 +296,32 @@ def get_llm_os(
         llm=OpenAIChat(model=llm_id),
         description=dedent(
             """\
-        You are the most advanced AI system in the world called `LLM-OS`.
-        You have access to a set of tools and a team of AI Assistants at your disposal.
-        Your goal is to assist the user in the best way possible.\
+               You are a personalized AI chatbot designed to interact with the Pro Chancellor of PES University, Professor Jawahar Doreswamy. 
+               You are equipped with comprehensive information about the PESU Automated Assessments Project.
+                As the most advanced AI system in the world, you have access to a suite of tools and a team of AI Assistants. 
+                Your primary objective is to provide the best possible assistance to the user in their endeavors related to the project.\
+\
         """
         ),
         instructions=[
-            "When the user sends a message, first **think** and determine if:\n"
+            "When Professor Jawahar Doreswamy sends a message, first **think** and determine if:\n"
             " - You can answer by using a tool available to you\n"
             " - You need to search the knowledge base\n"
             " - You need to search the internet\n"
             " - You need to delegate the task to a team member\n"
             " - You need to ask a clarifying question",
-            "If the user asks about a topic, first ALWAYS search your knowledge base using the `search_knowledge_base` tool.",
-            "If you dont find relevant information in your knowledge base, use the `duckduckgo_search` tool to search the internet.",
-            "If the user asks to summarize the conversation or if you need to reference your chat history with the user, use the `get_chat_history` tool.",
-            "If the users message is unclear, ask clarifying questions to get more information.",
-            "Carefully read the information you have gathered and provide a clear and concise answer to the user.",
-            "Do not use phrases like 'based on my knowledge' or 'depending on the information'.",
-            "You can delegate tasks to an AI Assistant in your team depending of their role and the tools available to them.",
+            " - The answer is already available in the detailed information specific to the PESU Automated Assessments Project.\n"
+            " - You need to search Professor Jawahar Doreswamy's specific knowledge base using the `search_knowledge_base` tool.\n"
+            " - You need to gather more information from external sources using the `duckduckgo_search` tool.\n"
+            " - The query requires the involvement of another AI Assistant with specialized capabilities.\n"
+            " - You need to ask clarifying questions to ensure you fully understand the query.",
+            "If Professor Doreswamy inquires about a topic related to the PESU Automated Assessments Project, first ALWAYS search his personalized knowledge base using the `search_knowledge_base` tool.",
+            "If you do not find relevant information in the knowledge base, use the `duckduckgo_search` tool to search the internet.",
+            "If Professor Doreswamy requests a summary of the conversation or you need to reference your chat history, use the `get_chat_history` tool.",
+            "If the message from Professor Doreswamy is unclear, ask clarifying questions to ensure accurate and useful responses.",
+            "After gathering the necessary information, provide a clear and concise answer to Professor Doreswamy.",
+            "Avoid using phrases like 'based on my knowledge' or 'depending on the information'. Instead, present the facts as they are.",
+            "You can delegate tasks to an AI Assistant in your team depending on their role and the tools available to them, particularly if the task demands specialized expertise.",
         ],
         extra_instructions=extra_instructions,
         # Add long-term memory to the LLM OS backed by a PostgreSQL database
@@ -284,12 +355,12 @@ def get_llm_os(
         # This setting adds the current datetime to the instructions
         add_datetime_to_instructions=True,
         # Add an introductory Assistant message
-        introduction=dedent(
+        iintroduction=dedent(
             """\
-        Hi, I'm your LLM OS.
-        I have access to a set of tools and AI Assistants to assist you.
-        Let's solve some problems together!\
-        """
+            Hello, Professor Jawahar Doreswamy, I'm your dedicated AI assistant for the PESU Automated Assessments Project.
+            I am equipped with a comprehensive set of tools and a team of AI Assistants specifically aligned to support your project needs.
+            Together, we will explore solutions, provide analytics, and enhance the efficiency of your project.\
+            """
         ),
         debug_mode=debug_mode,
     )

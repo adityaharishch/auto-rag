@@ -15,15 +15,15 @@ JIRA_API_TOKEN = "ATATT3xFfGF0hahA3V0qgJSlrfXbhoW2usJwu8fiUBfKqhoWgsMzGReuYU1yjq
 # Create a JIRA client instance
 jira_client = JIRA(server=JIRA_URL, basic_auth=(JIRA_USERNAME, JIRA_API_TOKEN))
 
-class YFinanceTools(Toolkit):
+class ProjectTools(Toolkit):
     def __init__(
         self,
-        project_updates: bool = False,
-        milestone_tracking: bool = False,
-        budget_analysis: bool = False,
-        resource_management: bool = False,
-        risk_analysis: bool = False,
-        jira_integration: bool = False,
+        project_updates: bool = True,
+        milestone_tracking: bool = True,
+        budget_analysis: bool = True,
+        resource_management: bool = True,
+        risk_analysis: bool = True,
+        jira_integration: bool = True,
     ):
         super().__init__(name="project_tools")
 

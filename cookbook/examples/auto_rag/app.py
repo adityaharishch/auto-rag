@@ -32,7 +32,7 @@ def restart_assistant():
 
 def main() -> None:
     # Get LLM model
-    llm_model = st.sidebar.selectbox("Select LLM", options=["gpt-4-turbo", "gpt-3.5-turbo"])
+    llm_model = st.sidebar.selectbox("Select LLM", options=["gpt-4-turbo", "gpt-3.5-turbo", "gpt-4o"])
     # Set assistant_type in session state
     if "llm_model" not in st.session_state:
         st.session_state["llm_model"] = llm_model
