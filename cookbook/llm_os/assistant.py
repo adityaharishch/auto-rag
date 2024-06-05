@@ -80,14 +80,14 @@ def get_llm_os(
     if data_analyst:
         _data_analyst = DuckDbAssistant(
             name="Data Analyst",
-            role="Analyze movie data and provide insights",
+            role="Analyze grades data and provide insights",
             semantic_model=json.dumps(
                 {
                     "tables": [
                         {
-                            "name": "movies",
-                            "description": "CSV of my favorite movies.",
-                            "path": "https://phidata-public.s3.amazonaws.com/demo_data/IMDB-Movie-Data.csv",
+                            "name": "grades",
+                            "description": "CSV of my the grades.",
+                            "path": "https://pesugrades.s3.eu-north-1.amazonaws.com/pesu-eval-ipcv.grades.csv",
                         }
                     ]
                 }
@@ -96,7 +96,7 @@ def get_llm_os(
         )
         team.append(_data_analyst)
         extra_instructions.append(
-            "To answer questions about my favorite movies, delegate the task to the `Data Analyst`."
+            "To answer questions about my the details of the grades tabel, delegate the task to the `Data Analyst`."
         )
     if python_assistant:
         _python_assistant = PythonAssistant(
