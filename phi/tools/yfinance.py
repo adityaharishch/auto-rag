@@ -8,9 +8,9 @@ except ImportError:
     raise ImportError("`jira` library is not installed. Please install it using `pip install jira`.")
 
 # Configuration for connecting to your JIRA instance
-JIRA_URL = "https://andromeda360.atlassian.net"
-JIRA_USERNAME = "adithya.harish@andromeda360.ai"
-JIRA_API_TOKEN = "ATATT3xFfGF0hahA3V0qgJSlrfXbhoW2usJwu8fiUBfKqhoWgsMzGReuYU1yjqlJnzCyo-tnAQg1CuwcpcySaHterFOUd-jL3Yvv5PcuU8dwDQ0gJtaKXrTtriQrd_HjsnTExqBHGh2jeRKhzeGdZLxd4XRqVuzIBGlykOhJD-_W10n6jSlpJB4=4823EFF4"
+# JIRA_URL = "https://andromeda360.atlassian.net"
+# JIRA_USERNAME = "adithya.harish@andromeda360.ai"
+# JIRA_API_TOKEN = "ATATT3xFfGF0hahA3V0qgJSlrfXbhoW2usJwu8fiUBfKqhoWgsMzGReuYU1yjqlJnzCyo-tnAQg1CuwcpcySaHterFOUd-jL3Yvv5PcuU8dwDQ0gJtaKXrTtriQrd_HjsnTExqBHGh2jeRKhzeGdZLxd4XRqVuzIBGlykOhJD-_W10n6jSlpJB4=4823EFF4"
 
 # Create a JIRA client instance
 jira_client = JIRA(server=JIRA_URL, basic_auth=(JIRA_USERNAME, JIRA_API_TOKEN))
