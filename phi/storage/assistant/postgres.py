@@ -1,4 +1,5 @@
 from typing import Optional, Any, List
+from datetime import datetime
 
 try:
     from sqlalchemy.dialects import postgresql
@@ -82,6 +83,7 @@ class PgAssistantStorage(AssistantStorage):
             # Metadata associated with the assistant tasks
             Column("task_data", postgresql.JSONB),
             # The timestamp of when this run was created.
+            Column("initial_prompt", String, nullable=True),
             Column("created_at", DateTime(timezone=True), server_default=text("now()")),
             # The timestamp of when this run was last updated.
             Column("updated_at", DateTime(timezone=True), onupdate=text("now()")),
@@ -206,3 +208,24 @@ class PgAssistantStorage(AssistantStorage):
         if self.table_exists():
             logger.debug(f"Deleting table: {self.table_name}")
             self.table.drop(self.db_engine)
+    
+    def save_initial_prompt(self, run_id: str, initial_prompt: str) -> None:
+        """
+        Saves the initial prompt for the specified run ID.
+
+        :param run_id: The run ID associated with the prompt.
+        :param initial_prompt: The initial user prompt to save.
+        """
+        with self.Session() as sess, sess.begin():
+            # Check if the run exists
+            existing_row = self._read(session=sess, run_id=run_id)
+            if existing_row:
+                # Update the existing row with the new initial prompt
+                stmt = self.table.update().\
+                    where(self.table.c.run_id == run_id).\
+                    values(initial_prompt=initial_prompt, updated_at=datetime.utcnow())
+                sess.execute(stmt)
+            else:
+                # If the run does not exist, log an error or handle accordingly
+                logger.error(f"No existing run with ID {run_id} to update initial prompt.")
+                raise ValueError(f"No existing run with ID {run_id}. Cannot save initial prompt.")

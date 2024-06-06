@@ -7,6 +7,7 @@ from phi.document import Document
 from phi.document.reader.pdf import PDFReader
 from phi.document.reader.website import WebsiteReader
 from phi.utils.log import logger
+import requests
 
 from assistant import get_llm_os  
 
@@ -71,7 +72,7 @@ def main() -> None:
 
     # Enable shell tools
     if "shell_tools_enabled" not in st.session_state:
-        st.session_state["shell_tools_enabled"] = False
+        st.session_state["shell_tools_enabled"] = True
     # Get shell_tools_enabled from session state if set
     shell_tools_enabled = st.session_state["shell_tools_enabled"]
     # Checkbox for enabling shell tools
@@ -86,7 +87,7 @@ def main() -> None:
 
     # Enable Data Analyst
     if "data_analyst_enabled" not in st.session_state:
-        st.session_state["data_analyst_enabled"] = False
+        st.session_state["data_analyst_enabled"] = True
     # Get data_analyst_enabled from session state if set
     data_analyst_enabled = st.session_state["data_analyst_enabled"]
     # Checkbox for enabling web search
@@ -102,7 +103,7 @@ def main() -> None:
 
     # Enable Python Assistant
     if "python_assistant_enabled" not in st.session_state:
-        st.session_state["python_assistant_enabled"] = False
+        st.session_state["python_assistant_enabled"] = True
     # Get python_assistant_enabled from session state if set
     python_assistant_enabled = st.session_state["python_assistant_enabled"]
     # Checkbox for enabling web search
@@ -118,7 +119,7 @@ def main() -> None:
 
     # Enable Research Assistant
     if "research_assistant_enabled" not in st.session_state:
-        st.session_state["research_assistant_enabled"] = False
+        st.session_state["research_assistant_enabled"] = True
     # Get research_assistant_enabled from session state if set
     research_assistant_enabled = st.session_state["research_assistant_enabled"]
     # Checkbox for enabling web search
@@ -138,31 +139,31 @@ def main() -> None:
     # Get investment_assistant_enabled from session state if set
     investment_assistant_enabled = st.session_state["investment_assistant_enabled"]
     # Checkbox for enabling web search
-    investment_assistant = st.sidebar.checkbox(
-        "Investment Assistant",
-        value=investment_assistant_enabled,
-        help="Enable the investment assistant. NOTE: This is not financial advice.",
-    )
-    if investment_assistant_enabled != investment_assistant:
-        st.session_state["investment_assistant_enabled"] = investment_assistant
-        investment_assistant_enabled = investment_assistant
-        restart_assistant()
+    # investment_assistant = st.sidebar.checkbox(
+    #     "Investment Assistant",
+    #     value=investment_assistant_enabled,
+    #     help="Enable the investment assistant. NOTE: This is not financial advice.",
+    # )
+    # if investment_assistant_enabled != investment_assistant:
+    #     st.session_state["investment_assistant_enabled"] = investment_assistant
+    #     investment_assistant_enabled = investment_assistant
+    #     restart_assistant()
     
     #Enable Project Assistant
     if "project_assistant_enabled" not in st.session_state:
-        st.session_state["project_assistant_enabled"] = False
+        st.session_state["project_assistant_enabled"] = True
     # Get project_assistant_enabled from session state if set
     project_assistant_enabled = st.session_state["project_assistant_enabled"]
     # Checkbox for enabling web search
-    project_assistant = st.sidebar.checkbox(
-        "Project Assistant",
-        value=project_assistant_enabled,
-        help="Enable the project assistant.",
-    )
-    if project_assistant_enabled != project_assistant:
-        st.session_state["project_assistant_enabled"] = project_assistant
-        project_assistant_enabled = project_assistant
-        restart_assistant()
+    # project_assistant = st.sidebar.checkbox(
+    #     "Project Assistant",
+    #     value=project_assistant_enabled,
+    #     help="Enable the project assistant.",
+    # )
+    # if project_assistant_enabled != project_assistant:
+    #     st.session_state["project_assistant_enabled"] = project_assistant
+    #     project_assistant_enabled = project_assistant
+    #     restart_assistant()
 
     # Get the assistant
     llm_os: Assistant
@@ -202,7 +203,9 @@ def main() -> None:
 
     # Prompt for user input
     if prompt := st.chat_input():
+        response = send_message_to_api(prompt)
         st.session_state["messages"].append({"role": "user", "content": prompt})
+        st.session_state["messages"].append({"role": "assistant", "content": response})
 
     # Display existing chat messages
     for message in st.session_state["messages"]:
@@ -301,13 +304,45 @@ def main() -> None:
             st.rerun()
 
     if st.sidebar.button("New Run"):
-        restart_assistant()
+        restart_assistant(preserve_knowledge_base=True)
+
+def send_message_to_api(message):
+    url = 'http://localhost:8000/chat/'
+    try:
+        response = requests.post(url, json={"message": message})
+        response_data = response.json()
+        return response_data.get('response', "No response from API.")
+    except Exception as e:
+        return str(e)
 
 
-def restart_assistant():
+
+def restart_assistant(preserve_knowledge_base=False):
     logger.debug("---*--- Restarting Assistant ---*---")
-    st.session_state["llm_os"] = None
-    st.session_state["llm_os_run_id"] = None
+    # Clear the LLM OS and run ID, but keep the knowledge base if needed
+    if not preserve_knowledge_base:
+        if "llm_os" in st.session_state and st.session_state["llm_os"].knowledge_base:
+            # Optionally save the state of the knowledge base if needed
+            saved_knowledge_base = st.session_state["llm_os"].knowledge_base
+        st.session_state["llm_os"] = None
+        st.session_state["llm_os_run_id"] = None
+    else:
+        # Reset the LLM OS but keep the knowledge base intact
+        current_knowledge_base = st.session_state["llm_os"].knowledge_base
+        st.session_state["llm_os"] = get_llm_os(
+            llm_id=st.session_state["llm_id"],
+            calculator=st.session_state["calculator_enabled"],
+            ddg_search=st.session_state["ddg_search_enabled"],
+            file_tools=st.session_state["file_tools_enabled"],
+            shell_tools=st.session_state["shell_tools_enabled"],
+            data_analyst=st.session_state["data_analyst_enabled"],
+            python_assistant=st.session_state["python_assistant_enabled"],
+            research_assistant=st.session_state["research_assistant_enabled"],
+            investment_assistant=st.session_state["investment_assistant_enabled"],
+            project_assistant=st.session_state["project_assistant_enabled"],
+        )
+        st.session_state["llm_os"].knowledge_base = current_knowledge_base
+
     if "url_scrape_key" in st.session_state:
         st.session_state["url_scrape_key"] += 1
     if "file_uploader_key" in st.session_state:

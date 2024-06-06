@@ -87,7 +87,7 @@ def get_llm_os(
                         {
                             "name": "grades",
                             "description": "CSV of my the grades.",
-                            "path": "https://pesugrades.s3.eu-north-1.amazonaws.com/pesu-eval-ipcv.grades.csv",
+                            "path": "https://pesugrades.s3.eu-north-1.amazonaws.com/pesu-eval-all-grades.csv",
                         }
                     ]
                 }
@@ -111,53 +111,35 @@ def get_llm_os(
     if research_assistant:
         _research_assistant = Assistant(
             name="Research Assistant",
-            role="Write a research report on a given topic",
+            role="Summarize information about a person from search results",
             llm=OpenAIChat(model=llm_id),
-            description="You are a Senior New York Times researcher tasked with writing a cover story research report.",
+            description="You are tasked with summarizing information about a person using search results.",
             instructions=[
-                "For a given topic, use the `search_exa` to get the top 10 search results.",
-                "Carefully read the results and generate a final - NYT cover story worthy report in the <report_format> provided below.",
-                "Make your report engaging, informative, and well-structured.",
-                "Remember: you are writing for the New York Times, so the quality of the report is important.",
+                "Use the `search_exa` tool to get the top 10 search results for the person in question.",
+                "Carefully read the results and summarize the key information about the person.",
+                "Your summary should be concise, accurate, and well-structured.",
+                "Ensure the quality of the summary meets high standards as this information is critical."
             ],
             expected_output=dedent(
                 """\
-            An engaging, informative, and well-structured report in the following format:
-            <report_format>
-            ## Title
-
-            - **Overview** Brief introduction of the topic.
-            - **Importance** Why is this topic significant now?
-
-            ### Section 1
-            - **Detail 1**
-            - **Detail 2**
-
-            ### Section 2
-            - **Detail 1**
-            - **Detail 2**
-
-            ## Conclusion
-            - **Summary of report:** Recap of the key findings from the report.
-            - **Implications:** What these findings mean for the future.
-
-            ## References
-            - [Reference 1](Link to Source)
-            - [Reference 2](Link to Source)
-            </report_format>
-            """
+                A concise, accurate, and well-structured summary about the person:
+                - **Name:** <Name of the person>
+                - **Biographical Details:** <Brief description of the person's background and significance>
+                - **Major Contributions/Achievements:** <Key contributions or achievements of the person>
+                - **Recent Activities or News:** <Any recent news or activities related to the person>
+                """
             ),
-            tools=[ExaTools(num_results=5, text_length_limit=1000)],
-            # This setting tells the LLM to format messages in markdown
+            tools=[ExaTools(num_results=10, text_length_limit=1000)],
             markdown=True,
             add_datetime_to_instructions=True,
             debug_mode=debug_mode,
         )
         team.append(_research_assistant)
         extra_instructions.append(
-            "To write a research report, delegate the task to the `Research Assistant`. "
-            "Return the report in the <report_format> to the user as is, without any additional text like 'here is the report'."
-        )
+            "To summarize information about a person, delegate the task to the `Research Assistant`. "
+            "Return the summary in the format provided above to the user without any additional text."
+        )   
+
     if investment_assistant:
         _investment_assistant = Assistant(
             name="Investment Assistant",
