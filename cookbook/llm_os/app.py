@@ -7,7 +7,6 @@ from phi.document import Document
 from phi.document.reader.pdf import PDFReader
 from phi.document.reader.website import WebsiteReader
 from phi.utils.log import logger
-import requests
 
 from assistant import get_llm_os  
 
@@ -203,9 +202,7 @@ def main() -> None:
 
     # Prompt for user input
     if prompt := st.chat_input():
-        response = send_message_to_api(prompt)
         st.session_state["messages"].append({"role": "user", "content": prompt})
-        st.session_state["messages"].append({"role": "assistant", "content": response})
 
     # Display existing chat messages
     for message in st.session_state["messages"]:
@@ -305,16 +302,6 @@ def main() -> None:
 
     if st.sidebar.button("New Run"):
         restart_assistant(preserve_knowledge_base=True)
-
-def send_message_to_api(message):
-    url = 'http://localhost:8000/chat/'
-    try:
-        response = requests.post(url, json={"message": message})
-        response_data = response.json()
-        return response_data.get('response', "No response from API.")
-    except Exception as e:
-        return str(e)
-
 
 
 def restart_assistant(preserve_knowledge_base=False):
