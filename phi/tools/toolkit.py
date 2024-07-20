@@ -1,8 +1,8 @@
 from collections import OrderedDict
 from typing import Callable, Dict
 
-from phi.tools.function import Function
-from phi.utils.log import logger
+from micro.tools.function import Function
+from micro.utils.log import logger
 
 
 class Toolkit:

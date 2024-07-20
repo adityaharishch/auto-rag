@@ -5,8 +5,8 @@ try:
 except ImportError:
     raise ImportError("`psycopg2` not installed. Please install using `pip install psycopg2`.")
 
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 
 class PostgresTools(Toolkit):

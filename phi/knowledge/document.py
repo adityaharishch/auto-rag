@@ -1,7 +1,7 @@
 from typing import List, Iterator
 
-from phi.document import Document
-from phi.knowledge.base import AssistantKnowledge
+from micro.document import Document
+from micro.knowledge.base import AssistantKnowledge
 
 
 class DocumentKnowledgeBase(AssistantKnowledge):

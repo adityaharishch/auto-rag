@@ -1,7 +1,7 @@
 import httpx
 from pathlib import Path
-from phi.assistant import Assistant
-from phi.tools.csv_tools import CsvTools
+from micro.assistant import Assistant
+from micro.tools.csv_tools import CsvTools
 
 # -*- Download the imdb csv for the assistant -*-
 url = "https://phidata-public.s3.amazonaws.com/demo_data/IMDB-Movie-Data.csv"

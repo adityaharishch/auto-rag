@@ -14,12 +14,12 @@ except ImportError:
     raise ImportError("`sqlalchemy` not installed")
 
 
-from phi.document import Document
-from phi.embedder import Embedder
-from phi.embedder.openai import OpenAIEmbedder
-from phi.vectordb.base import VectorDb
-from phi.vectordb.distance import Distance
-from phi.utils.log import logger
+from micro.document import Document
+from micro.embedder import Embedder
+from micro.embedder.openai import OpenAIEmbedder
+from micro.vectordb.base import VectorDb
+from micro.vectordb.distance import Distance
+from micro.utils.log import logger
 
 
 class S2VectorDb(VectorDb):

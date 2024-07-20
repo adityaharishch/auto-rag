@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
 
-from phi.assistant.run import AssistantRun
+from micro.assistant.run import AssistantRun
 
 
 class AssistantStorage(ABC):

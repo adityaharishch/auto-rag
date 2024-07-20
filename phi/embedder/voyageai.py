@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, Optional, Tuple
 
-from phi.embedder.base import Embedder
-from phi.utils.log import logger
+from micro.embedder.base import Embedder
+from micro.utils.log import logger
 
 try:
     from voyageai import Client

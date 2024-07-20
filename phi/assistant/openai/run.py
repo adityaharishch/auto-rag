@@ -3,12 +3,12 @@ from typing_extensions import Literal
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
-from phi.assistant.openai.assistant import OpenAIAssistant
-from phi.assistant.openai.exceptions import ThreadIdNotSet, AssistantIdNotSet, RunIdNotSet
-from phi.tools import Tool, Toolkit
-from phi.tools.function import Function
-from phi.utils.functions import get_function_call
-from phi.utils.log import logger
+from micro.assistant.openai.assistant import OpenAIAssistant
+from micro.assistant.openai.exceptions import ThreadIdNotSet, AssistantIdNotSet, RunIdNotSet
+from micro.tools import Tool, Toolkit
+from micro.tools.function import Function
+from micro.utils.functions import get_function_call
+from micro.utils.log import logger
 
 try:
     from openai import OpenAI

@@ -8,10 +8,10 @@ except ImportError:
         "The `pinecone-client` package is not installed, please install using `pip install pinecone-client`."
     )
 
-from phi.document import Document
-from phi.embedder import Embedder
-from phi.vectordb.base import VectorDb
-from phi.utils.log import logger
+from micro.document import Document
+from micro.embedder import Embedder
+from micro.vectordb.base import VectorDb
+from micro.utils.log import logger
 from pinecone.core.client.api.manage_indexes_api import ManageIndexesApi
 from pinecone.models import ServerlessSpec, PodSpec
 from pinecone.core.client.models import Vector
@@ -87,7 +87,7 @@ class PineconeDB(VectorDb):
         # Embedder for embedding the document contents
         _embedder = embedder
         if _embedder is None:
-            from phi.embedder.openai import OpenAIEmbedder
+            from micro.embedder.openai import OpenAIEmbedder
 
             _embedder = OpenAIEmbedder()
         self.embedder: Embedder = _embedder

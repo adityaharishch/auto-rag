@@ -1,1 +1,1 @@
-from phi.tools.toolkit import Toolkit as ToolRegistry  # type: ignore  # noqa: F401
+from micro.tools.toolkit import Toolkit as ToolRegistry  # type: ignore  # noqa: F401

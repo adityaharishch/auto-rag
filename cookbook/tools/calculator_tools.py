@@ -1,5 +1,5 @@
-from phi.assistant import Assistant
-from phi.tools.calculator import Calculator
+from micro.assistant import Assistant
+from micro.tools.calculator import Calculator
 
 assistant = Assistant(
     tools=[Calculator()],

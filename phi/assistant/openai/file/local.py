@@ -1,8 +1,8 @@
 from pathlib import Path
 from typing import Any, Union, Optional
 
-from phi.assistant.openai.file import File
-from phi.utils.log import logger
+from micro.assistant.openai.file import File
+from micro.utils.log import logger
 
 
 class LocalFile(File):

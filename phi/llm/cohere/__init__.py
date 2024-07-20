@@ -1,1 +1,1 @@
-from phi.llm.cohere.chat import CohereChat
+from micro.llm.cohere.chat import CohereChat

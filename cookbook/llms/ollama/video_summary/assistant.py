@@ -1,6 +1,6 @@
 from textwrap import dedent
-from phi.llm.ollama import Ollama
-from phi.assistant import Assistant
+from micro.llm.ollama import Ollama
+from micro.assistant import Assistant
 
 
 def get_chunk_summarizer(

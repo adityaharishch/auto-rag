@@ -2,12 +2,12 @@ import json
 from textwrap import dedent
 from typing import Optional, List, Dict, Any, Iterator
 
-from phi.llm.base import LLM
-from phi.llm.message import Message
-from phi.tools.function import FunctionCall
-from phi.utils.log import logger
-from phi.utils.timer import Timer
-from phi.utils.tools import get_function_call_for_tool_call
+from micro.llm.base import LLM
+from micro.llm.message import Message
+from micro.tools.function import FunctionCall
+from micro.utils.log import logger
+from micro.utils.timer import Timer
+from micro.utils.tools import get_function_call_for_tool_call
 
 try:
     from cohere import Client as CohereClient

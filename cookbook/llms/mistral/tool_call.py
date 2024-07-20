@@ -1,6 +1,6 @@
-from phi.assistant import Assistant
-from phi.llm.mistral import Mistral
-from phi.tools.duckduckgo import DuckDuckGo
+from micro.assistant import Assistant
+from micro.llm.mistral import Mistral
+from micro.tools.duckduckgo import DuckDuckGo
 
 assistant = Assistant(
     llm=Mistral(model="mistral-large-latest"),

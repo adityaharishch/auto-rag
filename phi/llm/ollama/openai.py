@@ -1,4 +1,4 @@
-from phi.llm.openai.like import OpenAILike
+from micro.llm.openai.like import OpenAILike
 
 
 class OllamaOpenAI(OpenAILike):

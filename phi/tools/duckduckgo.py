@@ -1,8 +1,8 @@
 import json
 from typing import Any, Optional
 
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 try:
     from duckduckgo_search import DDGS

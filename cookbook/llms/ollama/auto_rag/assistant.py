@@ -1,12 +1,12 @@
 from typing import Optional
 
-from phi.assistant import Assistant
-from phi.knowledge import AssistantKnowledge
-from phi.llm.ollama import Ollama
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.embedder.ollama import OllamaEmbedder
-from phi.vectordb.pgvector import PgVector2
-from phi.storage.assistant.postgres import PgAssistantStorage
+from micro.assistant import Assistant
+from micro.knowledge import AssistantKnowledge
+from micro.llm.ollama import Ollama
+from micro.tools.duckduckgo import DuckDuckGo
+from micro.embedder.ollama import OllamaEmbedder
+from micro.vectordb.pgvector import PgVector2
+from micro.storage.assistant.postgres import PgAssistantStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 

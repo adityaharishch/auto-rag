@@ -1,2 +1,2 @@
-from phi.prompt.template import PromptTemplate
-from phi.prompt.registry import PromptRegistry
+from micro.prompt.template import PromptTemplate
+from micro.prompt.registry import PromptRegistry

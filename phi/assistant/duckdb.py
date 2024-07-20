@@ -4,10 +4,10 @@ from pathlib import Path
 from pydantic import model_validator
 from textwrap import dedent
 
-from phi.assistant import Assistant
-from phi.tools.duckdb import DuckDbTools
-from phi.tools.file import FileTools
-from phi.utils.log import logger
+from micro.assistant import Assistant
+from micro.tools.duckdb import DuckDbTools
+from micro.tools.file import FileTools
+from micro.utils.log import logger
 
 try:
     import duckdb

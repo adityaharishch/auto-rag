@@ -1,6 +1,6 @@
-from phi.assistant import Assistant
-from phi.llm.anthropic import Claude
-from phi.tools.duckdb import DuckDbTools
+from micro.assistant import Assistant
+from micro.llm.anthropic import Claude
+from micro.tools.duckdb import DuckDbTools
 
 duckdb_tools = DuckDbTools(create_tables=False, export_tables=False, summarize_tables=False)
 duckdb_tools.create_table_from_path(

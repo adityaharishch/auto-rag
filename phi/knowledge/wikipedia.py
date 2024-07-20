@@ -1,7 +1,7 @@
 from typing import Iterator, List
 
-from phi.document import Document
-from phi.knowledge.base import AssistantKnowledge
+from micro.document import Document
+from micro.knowledge.base import AssistantKnowledge
 
 try:
     import wikipedia  # noqa: F401

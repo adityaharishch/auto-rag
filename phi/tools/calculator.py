@@ -1,8 +1,8 @@
 import json
 import math
 
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 
 class Calculator(Toolkit):

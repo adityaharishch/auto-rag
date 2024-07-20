@@ -1,5 +1,5 @@
-from phi.assistant import Assistant
-from phi.tools.email import EmailTools
+from micro.assistant import Assistant
+from micro.tools.email import EmailTools
 
 receiver_email = "<receiver_email>"
 sender_email = "<sender_email>"

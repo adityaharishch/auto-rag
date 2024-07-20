@@ -1,7 +1,7 @@
 import nest_asyncio
 import streamlit as st
-from phi.assistant import Assistant
-from phi.utils.log import logger
+from micro.assistant import Assistant
+from micro.utils.log import logger
 
 from assistant import get_function_calling_assistant  # type: ignore
 

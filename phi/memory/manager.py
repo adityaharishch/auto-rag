@@ -2,12 +2,12 @@ from typing import List, Any, Optional, cast
 
 from pydantic import BaseModel, ConfigDict
 
-from phi.llm.base import LLM
-from phi.llm.message import Message
-from phi.memory.memory import Memory
-from phi.memory.db import MemoryDb
-from phi.memory.row import MemoryRow
-from phi.utils.log import logger
+from micro.llm.base import LLM
+from micro.llm.message import Message
+from micro.memory.memory import Memory
+from micro.memory.db import MemoryDb
+from micro.memory.row import MemoryRow
+from micro.utils.log import logger
 
 
 class MemoryManager(BaseModel):
@@ -27,7 +27,7 @@ class MemoryManager(BaseModel):
     def update_llm(self) -> None:
         if self.llm is None:
             try:
-                from phi.llm.openai import OpenAIChat
+                from micro.llm.openai import OpenAIChat
             except ModuleNotFoundError as e:
                 logger.exception(e)
                 logger.error(

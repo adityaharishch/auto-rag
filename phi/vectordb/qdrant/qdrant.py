@@ -9,12 +9,12 @@ except ImportError:
         "The `qdrant-client` package is not installed. " "Please install it via `pip install qdrant-client`."
     )
 
-from phi.document import Document
-from phi.embedder import Embedder
-from phi.embedder.openai import OpenAIEmbedder
-from phi.vectordb.base import VectorDb
-from phi.vectordb.distance import Distance
-from phi.utils.log import logger
+from micro.document import Document
+from micro.embedder import Embedder
+from micro.embedder.openai import OpenAIEmbedder
+from micro.vectordb.base import VectorDb
+from micro.vectordb.distance import Distance
+from micro.utils.log import logger
 
 
 class Qdrant(VectorDb):
@@ -160,6 +160,7 @@ class Qdrant(VectorDb):
             logger.debug(f"Inserted document: {document.name} ({document.meta_data})")
         if len(points) > 0:
             self.client.upsert(collection_name=self.collection, wait=False, points=points)
+        logger.debug("---------- Qdrant Response End ----------")
         logger.debug(f"Upsert {len(points)} documents")
 
     def upsert(self, documents: List[Document]) -> None:
@@ -169,6 +170,8 @@ class Qdrant(VectorDb):
         Args:
             documents (List[Document]): List of documents to upsert
         """
+
+        logger.debug("---------- Qdrant Response End ----------")
         logger.debug("Redirecting the request to insert")
         self.insert(documents)
 
@@ -201,7 +204,7 @@ class Qdrant(VectorDb):
                     usage=result.payload["usage"],
                 )
             )
-
+        logger.debug("---------- Qdrant Response End ----------")
         return search_results
 
     def delete(self) -> None:

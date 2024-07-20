@@ -1,8 +1,8 @@
 from typing import Optional, Dict, List, Tuple, Any
 from typing_extensions import Literal
 
-from phi.embedder.base import Embedder
-from phi.utils.log import logger
+from micro.embedder.base import Embedder
+from micro.utils.log import logger
 
 try:
     from openai import OpenAI as OpenAIClient

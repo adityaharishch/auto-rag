@@ -2,7 +2,7 @@ from typing import Any, List
 
 from pydantic import BaseModel
 
-from phi.document.base import Document
+from micro.document.base import Document
 
 
 class Reader(BaseModel):

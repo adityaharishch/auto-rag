@@ -1,1 +1,1 @@
-from phi.llm.azure.openai_chat import AzureOpenAIChat
+from micro.llm.azure.openai_chat import AzureOpenAIChat

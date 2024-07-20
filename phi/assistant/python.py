@@ -4,10 +4,10 @@ from pathlib import Path
 from pydantic import model_validator
 from textwrap import dedent
 
-from phi.assistant import Assistant
-from phi.file import File
-from phi.tools.python import PythonTools
-from phi.utils.log import logger
+from micro.assistant import Assistant
+from micro.file import File
+from micro.tools.python import PythonTools
+from micro.utils.log import logger
 
 
 class PythonAssistant(Assistant):

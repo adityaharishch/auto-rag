@@ -1,0 +1,16 @@
+openai
+ollama
+pgvector
+phidata
+psycopg[binary]
+pypdf
+sqlalchemy
+streamlit
+bs4
+duckduckgo-search
+nest_asyncio
+vertexai
+anthropic
+mistralai
+pinecone-client
+qdrant-client

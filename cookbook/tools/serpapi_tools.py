@@ -1,5 +1,5 @@
-from phi.assistant import Assistant
-from phi.tools.serpapi_tools import SerpApiTools
+from micro.assistant import Assistant
+from micro.tools.serpapi_tools import SerpApiTools
 
 assistant = Assistant(
     tools=[SerpApiTools()],

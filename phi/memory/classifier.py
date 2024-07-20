@@ -2,10 +2,10 @@ from typing import List, Any, Optional, cast
 
 from pydantic import BaseModel
 
-from phi.llm.base import LLM
-from phi.llm.message import Message
-from phi.memory.memory import Memory
-from phi.utils.log import logger
+from micro.llm.base import LLM
+from micro.llm.message import Message
+from micro.memory.memory import Memory
+from micro.utils.log import logger
 
 
 class MemoryClassifier(BaseModel):
@@ -19,7 +19,7 @@ class MemoryClassifier(BaseModel):
     def update_llm(self) -> None:
         if self.llm is None:
             try:
-                from phi.llm.openai import OpenAIChat
+                from micro.llm.openai import OpenAIChat
             except ModuleNotFoundError as e:
                 logger.exception(e)
                 logger.error(

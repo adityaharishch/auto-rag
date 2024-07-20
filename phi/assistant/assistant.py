@@ -19,21 +19,21 @@ from typing import (
 
 from pydantic import BaseModel, ConfigDict, field_validator, Field, ValidationError
 
-from phi.document import Document
-from phi.assistant.run import AssistantRun
-from phi.knowledge.base import AssistantKnowledge
-from phi.llm.base import LLM
-from phi.llm.message import Message
-from phi.llm.references import References  # noqa: F401
-from phi.memory.assistant import AssistantMemory, MemoryRetrieval, Memory  # noqa: F401
-from phi.prompt.template import PromptTemplate
-from phi.storage.assistant import AssistantStorage
-from phi.utils.format_str import remove_indent
-from phi.tools import Tool, Toolkit, Function
-from phi.utils.log import logger, set_log_level_to_debug
-from phi.utils.message import get_text_from_message
-from phi.utils.merge_dict import merge_dictionaries
-from phi.utils.timer import Timer
+from micro.document import Document
+from micro.assistant.run import AssistantRun
+from micro.knowledge.base import AssistantKnowledge
+from micro.llm.base import LLM
+from micro.llm.message import Message
+from micro.llm.references import References  # noqa: F401
+from micro.memory.assistant import AssistantMemory, MemoryRetrieval, Memory  # noqa: F401
+from micro.prompt.template import PromptTemplate
+from micro.storage.assistant import AssistantStorage
+from micro.utils.format_str import remove_indent
+from micro.tools import Tool, Toolkit, Function
+from micro.utils.log import logger, set_log_level_to_debug
+from micro.utils.message import get_text_from_message
+from micro.utils.merge_dict import merge_dictionaries
+from micro.utils.timer import Timer
 
 
 class Assistant(BaseModel):
@@ -267,7 +267,7 @@ class Assistant(BaseModel):
     def update_llm(self) -> None:
         if self.llm is None:
             try:
-                from phi.llm.openai import OpenAIChat
+                from micro.llm.openai import OpenAIChat
             except ModuleNotFoundError as e:
                 logger.exception(e)
                 logger.error(
@@ -1388,7 +1388,7 @@ class Assistant(BaseModel):
         if not self.monitoring:
             return
 
-        from phi.api.assistant import create_assistant_run, AssistantRunCreate
+        from micro.api.assistant import create_assistant_run, AssistantRunCreate
 
         try:
             database_row: AssistantRun = self.db_row or self.to_database_row()
@@ -1405,7 +1405,7 @@ class Assistant(BaseModel):
         if not self.monitoring:
             return
 
-        from phi.api.assistant import create_assistant_event, AssistantEventCreate
+        from micro.api.assistant import create_assistant_event, AssistantEventCreate
 
         try:
             database_row: AssistantRun = self.db_row or self.to_database_row()
@@ -1442,7 +1442,7 @@ class Assistant(BaseModel):
         show_message: bool = True,
         **kwargs: Any,
     ) -> None:
-        from phi.cli.console import console
+        from micro.cli.console import console
         from rich.live import Live
         from rich.table import Table
         from rich.status import Status
@@ -1507,7 +1507,7 @@ class Assistant(BaseModel):
         show_message: bool = True,
         **kwargs: Any,
     ) -> None:
-        from phi.cli.console import console
+        from micro.cli.console import console
         from rich.live import Live
         from rich.table import Table
         from rich.status import Status

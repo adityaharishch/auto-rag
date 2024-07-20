@@ -1,7 +1,7 @@
 from os import getenv
 from typing import Optional
 
-from phi.embedder.openai import OpenAIEmbedder
+from micro.embedder.openai import OpenAIEmbedder
 
 
 class AnyscaleEmbedder(OpenAIEmbedder):

@@ -1,6 +1,6 @@
-from phi.assistant import Assistant
-from phi.tools.yfinance import YFinanceTools
-from phi.llm.groq import Groq
+from micro.assistant import Assistant
+from micro.tools.yfinance import YFinanceTools
+from micro.llm.groq import Groq
 
 assistant = Assistant(
     llm=Groq(model="llama3-70b-8192"),

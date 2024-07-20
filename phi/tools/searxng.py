@@ -3,8 +3,8 @@ import json
 import urllib.parse
 from typing import List, Optional
 
-from phi.tools.toolkit import Toolkit
-from phi.utils.log import logger
+from micro.tools.toolkit import Toolkit
+from micro.utils.log import logger
 
 
 class Searxng(Toolkit):

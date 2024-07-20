@@ -12,7 +12,7 @@ source ~/.venvs/aienv/bin/activate
 2. Export your Mistral API Key
 
 ```shell
-export MISTRAL_API_KEY=***
+export MISTRAL_API_KEY=GufkGusbSfRhvP66iKMvHfKLHfVNkQHm
 ```
 
 3. Install libraries

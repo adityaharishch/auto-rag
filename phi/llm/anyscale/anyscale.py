@@ -1,7 +1,7 @@
 from os import getenv
 from typing import Optional
 
-from phi.llm.openai.like import OpenAILike
+from micro.llm.openai.like import OpenAILike
 
 
 class Anyscale(OpenAILike):

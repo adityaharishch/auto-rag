@@ -1,7 +1,7 @@
 from typing import Optional
 
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 
 class EmailTools(Toolkit):

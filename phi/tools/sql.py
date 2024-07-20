@@ -1,8 +1,8 @@
 import json
 from typing import List, Optional, Dict, Any
 
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 try:
     from sqlalchemy import create_engine, Engine

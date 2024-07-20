@@ -1,10 +1,10 @@
 from pathlib import Path
 from typing import List
 
-from phi.document.base import Document
-from phi.document.reader.base import Reader
+from micro.document.base import Document
+from micro.document.reader.base import Reader
 from phi.aws.resource.s3.object import S3Object
-from phi.utils.log import logger
+from micro.utils.log import logger
 
 
 class S3TextReader(Reader):

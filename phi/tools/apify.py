@@ -1,8 +1,8 @@
 from os import getenv
 from typing import List, Optional
 
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 try:
     from apify_client import ApifyClient

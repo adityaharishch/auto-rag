@@ -3,8 +3,8 @@ from typing import Optional
 
 import streamlit as st
 from duckduckgo_search import DDGS
-from phi.tools.newspaper4k import Newspaper4k
-from phi.utils.log import logger
+from micro.tools.newspaper4k import Newspaper4k
+from micro.utils.log import logger
 
 from assistants import get_article_summarizer, get_article_writer  # type: ignore
 

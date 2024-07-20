@@ -1,7 +1,7 @@
 from typing import List
 
-from phi.document.base import Document
-from phi.document.reader.base import Reader
+from micro.document.base import Document
+from micro.document.reader.base import Reader
 
 try:
     import arxiv  # noqa: F401

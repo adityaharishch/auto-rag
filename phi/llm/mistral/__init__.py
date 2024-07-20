@@ -1,1 +1,1 @@
-from phi.llm.mistral.mistral import Mistral
+from micro.llm.mistral.mistral import Mistral

@@ -1,1 +1,1 @@
-from phi.vectordb.lancedb.lancedb import LanceDb
+from micro.vectordb.lancedb.lancedb import LanceDb

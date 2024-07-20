@@ -1,8 +1,8 @@
 from typing import List, Iterator
 
-from phi.document import Document
-from phi.document.reader.s3.pdf import S3PDFReader
-from phi.knowledge.s3.base import S3KnowledgeBase
+from micro.document import Document
+from micro.document.reader.s3.pdf import S3PDFReader
+from micro.knowledge.s3.base import S3KnowledgeBase
 
 
 class S3PDFKnowledgeBase(S3KnowledgeBase):

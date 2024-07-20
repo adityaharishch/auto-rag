@@ -1,6 +1,6 @@
 import json
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 try:
     from jira import JIRA

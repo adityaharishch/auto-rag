@@ -1,8 +1,8 @@
 import json
 from typing import Optional, Dict, Any
 
-from phi.tools.function import Function, FunctionCall
-from phi.utils.log import logger
+from micro.tools.function import Function, FunctionCall
+from micro.utils.log import logger
 
 
 def get_function_call(

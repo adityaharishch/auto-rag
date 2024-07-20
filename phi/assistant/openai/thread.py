@@ -2,11 +2,11 @@ from typing import Any, Optional, Dict, List, Union, Callable
 
 from pydantic import BaseModel, ConfigDict
 
-from phi.assistant.openai.run import Run
-from phi.assistant.openai.message import Message
-from phi.assistant.openai.assistant import OpenAIAssistant
-from phi.assistant.openai.exceptions import ThreadIdNotSet
-from phi.utils.log import logger
+from micro.assistant.openai.run import Run
+from micro.assistant.openai.message import Message
+from micro.assistant.openai.assistant import OpenAIAssistant
+from micro.assistant.openai.exceptions import ThreadIdNotSet
+from micro.utils.log import logger
 
 try:
     from openai import OpenAI

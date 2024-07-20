@@ -2,11 +2,11 @@ from textwrap import dedent
 from typing import Any, List
 
 import streamlit as st
-from phi.assistant import Assistant
-from phi.tools.exa import ExaTools
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.tools.yfinance import YFinanceTools
-from phi.utils.log import logger
+from micro.assistant import Assistant
+from micro.tools.exa import ExaTools
+from micro.tools.duckduckgo import DuckDuckGo
+from micro.tools.yfinance import YFinanceTools
+from micro.utils.log import logger
 
 st.set_page_config(
     page_title="Tool Calling Demo",

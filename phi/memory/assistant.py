@@ -3,13 +3,13 @@ from typing import Dict, List, Any, Optional, Tuple
 
 from pydantic import BaseModel, ConfigDict
 
-from phi.llm.message import Message
-from phi.llm.references import References
-from phi.memory.db import MemoryDb
-from phi.memory.memory import Memory
-from phi.memory.manager import MemoryManager
-from phi.memory.classifier import MemoryClassifier
-from phi.utils.log import logger
+from micro.llm.message import Message
+from micro.llm.references import References
+from micro.memory.db import MemoryDb
+from micro.memory.memory import Memory
+from micro.memory.manager import MemoryManager
+from micro.memory.classifier import MemoryClassifier
+from micro.utils.log import logger
 
 
 class MemoryRetrieval(str, Enum):

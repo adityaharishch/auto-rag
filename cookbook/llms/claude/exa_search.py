@@ -1,7 +1,7 @@
-from phi.assistant import Assistant
-from phi.tools.exa import ExaTools
-from phi.tools.website import WebsiteTools
-from phi.llm.anthropic import Claude
+from micro.assistant import Assistant
+from micro.tools.exa import ExaTools
+from micro.tools.website import WebsiteTools
+from micro.llm.anthropic import Claude
 
 assistant = Assistant(llm=Claude(), tools=[ExaTools(), WebsiteTools()], show_tool_calls=True)
 assistant.print_response(

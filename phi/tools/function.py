@@ -1,7 +1,7 @@
 from typing import Any, Dict, Optional, Callable, get_type_hints
 from pydantic import BaseModel, validate_call
 
-from phi.utils.log import logger
+from micro.utils.log import logger
 
 
 class Function(BaseModel):
@@ -26,7 +26,7 @@ class Function(BaseModel):
     @classmethod
     def from_callable(cls, c: Callable) -> "Function":
         from inspect import getdoc
-        from phi.utils.json_schema import get_json_schema
+        from micro.utils.json_schema import get_json_schema
 
         parameters = {"type": "object", "properties": {}}
         try:

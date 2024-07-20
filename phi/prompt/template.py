@@ -2,7 +2,7 @@ from typing import Optional, Dict, Any
 from collections import defaultdict
 
 from pydantic import BaseModel, ConfigDict
-from phi.utils.log import logger
+from micro.utils.log import logger
 
 
 class PromptTemplate(BaseModel):

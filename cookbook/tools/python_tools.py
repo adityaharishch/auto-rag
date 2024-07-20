@@ -1,5 +1,5 @@
-from phi.assistant import Assistant
-from phi.tools.python import PythonTools
+from micro.assistant import Assistant
+from micro.tools.python import PythonTools
 
 assistant = Assistant(tools=[PythonTools()], show_tool_calls=True)
 assistant.print_response(

@@ -13,9 +13,9 @@ try:
 except ImportError:
     raise ImportError("`sqlalchemy` not installed")
 
-from phi.assistant.run import AssistantRun
-from phi.storage.assistant.base import AssistantStorage
-from phi.utils.log import logger
+from micro.assistant.run import AssistantRun
+from micro.storage.assistant.base import AssistantStorage
+from micro.utils.log import logger
 
 
 class S2AssistantStorage(AssistantStorage):

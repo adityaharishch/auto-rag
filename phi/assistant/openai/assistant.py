@@ -3,11 +3,11 @@ from typing import List, Any, Optional, Dict, Union, Callable, Tuple
 
 from pydantic import BaseModel, ConfigDict, field_validator, model_validator
 
-from phi.assistant.openai.file import File
-from phi.assistant.openai.exceptions import AssistantIdNotSet
-from phi.tools import Tool, Toolkit
-from phi.tools.function import Function
-from phi.utils.log import logger, set_log_level_to_debug
+from micro.assistant.openai.file import File
+from micro.assistant.openai.exceptions import AssistantIdNotSet
+from micro.tools import Tool, Toolkit
+from micro.tools.function import Function
+from micro.utils.log import logger, set_log_level_to_debug
 
 try:
     from openai import OpenAI
@@ -291,7 +291,7 @@ class OpenAIAssistant(BaseModel):
     def print_response(self, message: str, markdown: bool = False) -> None:
         """Print a response from the assistant"""
 
-        from phi.assistant.openai.thread import Thread
+        from micro.assistant.openai.thread import Thread
 
         thread = Thread()
         thread.print_response(message=message, assistant=self, markdown=markdown)
@@ -305,7 +305,7 @@ class OpenAIAssistant(BaseModel):
         exit_on: Tuple[str, ...] = ("exit", "bye"),
     ) -> None:
         from rich.prompt import Prompt
-        from phi.assistant.openai.thread import Thread
+        from micro.assistant.openai.thread import Thread
 
         thread = Thread()
         while True:

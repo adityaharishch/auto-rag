@@ -1,4 +1,4 @@
-from phi.embedder.anyscale import AnyscaleEmbedder
+from micro.embedder.anyscale import AnyscaleEmbedder
 
 embeddings = AnyscaleEmbedder().get_embedding("Embed me")
 

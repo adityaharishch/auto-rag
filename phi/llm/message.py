@@ -2,7 +2,7 @@ import json
 from typing import Optional, Any, Dict, List, Union
 from pydantic import BaseModel, ConfigDict
 
-from phi.utils.log import logger
+from micro.utils.log import logger
 
 
 class Message(BaseModel):

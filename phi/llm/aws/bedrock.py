@@ -2,10 +2,10 @@ import json
 from typing import Optional, List, Iterator, Dict, Any
 
 from phi.aws.api_client import AwsApiClient
-from phi.llm.base import LLM
-from phi.llm.message import Message
-from phi.utils.log import logger
-from phi.utils.timer import Timer
+from micro.llm.base import LLM
+from micro.llm.message import Message
+from micro.utils.log import logger
+from micro.utils.timer import Timer
 
 try:
     from boto3 import session  # noqa: F401
@@ -34,7 +34,7 @@ class AwsBedrock(LLM):
 
         # Priority 2: Get aws_region from env
         from os import getenv
-        from phi.constants import AWS_REGION_ENV_VAR
+        from micro.constants import AWS_REGION_ENV_VAR
 
         aws_region_env = getenv(AWS_REGION_ENV_VAR)
         if aws_region_env is not None:
@@ -48,7 +48,7 @@ class AwsBedrock(LLM):
 
         # Priority 2: Get aws_profile from env
         from os import getenv
-        from phi.constants import AWS_PROFILE_ENV_VAR
+        from micro.constants import AWS_PROFILE_ENV_VAR
 
         aws_profile_env = getenv(AWS_PROFILE_ENV_VAR)
         if aws_profile_env is not None:

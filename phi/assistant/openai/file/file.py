@@ -3,8 +3,8 @@ from typing_extensions import Literal
 
 from pydantic import BaseModel, ConfigDict
 
-from phi.assistant.openai.exceptions import FileIdNotSet
-from phi.utils.log import logger
+from micro.assistant.openai.exceptions import FileIdNotSet
+from micro.utils.log import logger
 
 try:
     from openai import OpenAI

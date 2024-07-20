@@ -1,10 +1,10 @@
 import json
 from typing import List, Optional
 
-from phi.document import Document
-from phi.knowledge.wikipedia import WikipediaKnowledgeBase
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.document import Document
+from micro.knowledge.wikipedia import WikipediaKnowledgeBase
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 
 class WikipediaTools(Toolkit):

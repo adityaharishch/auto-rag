@@ -1,5 +1,5 @@
 import streamlit as st
-from phi.tools.youtube_tools import YouTubeTools
+from micro.tools.youtube_tools import YouTubeTools
 
 from assistant import get_chunk_summarizer, get_video_summarizer  # type: ignore
 

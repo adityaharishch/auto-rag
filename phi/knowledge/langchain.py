@@ -1,8 +1,8 @@
 from typing import List, Optional, Callable, Any
 
-from phi.document import Document
-from phi.knowledge.base import AssistantKnowledge
-from phi.utils.log import logger
+from micro.document import Document
+from micro.knowledge.base import AssistantKnowledge
+from micro.utils.log import logger
 
 
 class LangChainKnowledgeBase(AssistantKnowledge):

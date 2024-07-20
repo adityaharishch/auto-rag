@@ -2,8 +2,8 @@ import nest_asyncio
 import yfinance as yf
 import streamlit as st
 from duckduckgo_search import DDGS
-from phi.assistant import Assistant
-from phi.utils.log import logger
+from micro.assistant import Assistant
+from micro.utils.log import logger
 
 from assistants import get_invstment_research_assistant  # type: ignore
 

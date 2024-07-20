@@ -2,10 +2,10 @@ from typing import Optional
 from textwrap import dedent
 from typing import Any, List
 
-from phi.assistant import Assistant
-from phi.llm.ollama import Ollama
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.tools.yfinance import YFinanceTools
+from micro.assistant import Assistant
+from micro.llm.ollama import Ollama
+from micro.tools.duckduckgo import DuckDuckGo
+from micro.tools.yfinance import YFinanceTools
 
 
 def get_function_calling_assistant(

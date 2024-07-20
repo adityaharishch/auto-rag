@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Union, List, Iterator
 
-from phi.document import Document
-from phi.document.reader.json import JSONReader
-from phi.knowledge.base import AssistantKnowledge
+from micro.document import Document
+from micro.document.reader.json import JSONReader
+from micro.knowledge.base import AssistantKnowledge
 
 
 class JSONKnowledgeBase(AssistantKnowledge):

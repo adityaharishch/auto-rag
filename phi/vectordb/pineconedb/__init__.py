@@ -1,1 +1,1 @@
-from phi.vectordb.pineconedb.pineconedb import PineconeDB
+from micro.vectordb.pineconedb.pineconedb import PineconeDB

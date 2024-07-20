@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from phi.assistant import Assistant
-from phi.tools.duckduckgo import DuckDuckGo
+from micro.assistant import Assistant
+from micro.tools.duckduckgo import DuckDuckGo
 from pydantic import BaseModel, Field
 from rich.pretty import pprint
 

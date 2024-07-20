@@ -1,7 +1,7 @@
 import os
 
-from phi.assistant import Assistant
-from phi.tools.exa import ExaTools
+from micro.assistant import Assistant
+from micro.tools.exa import ExaTools
 
 os.environ["EXA_API_KEY"] = "your api key"
 

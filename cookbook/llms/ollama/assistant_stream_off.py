@@ -1,5 +1,5 @@
-from phi.assistant import Assistant
-from phi.llm.ollama import Ollama
+from micro.assistant import Assistant
+from micro.llm.ollama import Ollama
 
 assistant = Assistant(
     llm=Ollama(model="llama3"),

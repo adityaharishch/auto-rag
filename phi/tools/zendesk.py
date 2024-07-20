@@ -3,8 +3,8 @@ import json
 from typing import Optional
 from os import getenv
 
-from phi.tools import Toolkit
-from phi.utils.log import logger
+from micro.tools import Toolkit
+from micro.utils.log import logger
 
 try:
     import requests

@@ -11,9 +11,9 @@ try:
 except ImportError:
     raise ImportError("`sqlalchemy` not installed")
 
-from phi.memory.db import MemoryDb
-from phi.memory.row import MemoryRow
-from phi.utils.log import logger
+from micro.memory.db import MemoryDb
+from micro.memory.row import MemoryRow
+from micro.utils.log import logger
 
 
 class PgMemoryDb(MemoryDb):

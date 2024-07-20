@@ -1,7 +1,7 @@
 from openbb import obb
-from phi.assistant import Assistant
-from phi.llm.groq import Groq
-from phi.tools.openbb_tools import OpenBBTools
+from micro.assistant import Assistant
+from micro.llm.groq import Groq
+from micro.tools.openbb_tools import OpenBBTools
 
 assistant = Assistant(
     llm=Groq(model="llama3-70b-8192"),

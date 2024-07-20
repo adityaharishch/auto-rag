@@ -1,4 +1,4 @@
-from phi.assistant.assistant import (
+from micro.assistant.assistant import (
     Assistant,
     AssistantRun,
     AssistantMemory,

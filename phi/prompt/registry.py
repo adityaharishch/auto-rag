@@ -8,9 +8,9 @@ from phi.api.schemas.prompt import (
     PromptRegistrySchema,
     PromptTemplateSchema,
 )
-from phi.prompt.template import PromptTemplate
-from phi.prompt.exceptions import PromptUpdateException, PromptNotFoundException
-from phi.utils.log import logger
+from micro.prompt.template import PromptTemplate
+from micro.prompt.exceptions import PromptUpdateException, PromptNotFoundException
+from micro.utils.log import logger
 
 
 class PromptRegistry:

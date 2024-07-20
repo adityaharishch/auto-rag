@@ -3,10 +3,10 @@ from typing import Optional, Dict, Any, Union, List
 from pydantic import field_validator, Field
 from pydantic_core.core_schema import FieldValidationInfo
 
-from phi.base import PhiBase
-from phi.app.context import ContainerContext
+from micro.base import PhiBase
+from micro.app.context import ContainerContext
 from phi.resource.base import ResourceBase
-from phi.utils.log import logger
+from micro.utils.log import logger
 
 
 class AppBase(PhiBase):

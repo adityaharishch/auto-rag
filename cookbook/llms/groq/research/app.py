@@ -1,5 +1,5 @@
 import streamlit as st
-from phi.tools.tavily import TavilyTools
+from micro.tools.tavily import TavilyTools
 
 from assistant import get_research_assistant  # type: ignore
 

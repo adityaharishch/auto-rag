@@ -2,9 +2,9 @@ import json
 from pathlib import Path
 from typing import List
 
-from phi.document.base import Document
-from phi.document.reader.base import Reader
-from phi.utils.log import logger
+from micro.document.base import Document
+from micro.document.reader.base import Reader
+from micro.utils.log import logger
 
 
 class JSONReader(Reader):

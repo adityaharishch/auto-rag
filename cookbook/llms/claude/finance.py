@@ -1,6 +1,6 @@
-from phi.assistant import Assistant
-from phi.tools.yfinance import YFinanceTools
-from phi.llm.anthropic import Claude
+from micro.assistant import Assistant
+from micro.tools.yfinance import YFinanceTools
+from micro.llm.anthropic import Claude
 
 assistant = Assistant(
     name="Finance Assistant",

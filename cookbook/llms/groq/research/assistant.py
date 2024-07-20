@@ -1,6 +1,6 @@
 from textwrap import dedent
-from phi.llm.groq import Groq
-from phi.assistant import Assistant
+from micro.llm.groq import Groq
+from micro.assistant import Assistant
 
 
 def get_research_assistant(

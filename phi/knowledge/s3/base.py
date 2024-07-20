@@ -1,9 +1,9 @@
 from typing import List, Iterator, Optional
 
-from phi.document import Document
+from micro.document import Document
 from phi.aws.resource.s3.bucket import S3Bucket
 from phi.aws.resource.s3.object import S3Object
-from phi.knowledge.base import AssistantKnowledge
+from micro.knowledge.base import AssistantKnowledge
 
 
 class S3KnowledgeBase(AssistantKnowledge):

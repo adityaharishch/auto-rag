@@ -3,9 +3,9 @@ from typing_extensions import Literal
 
 from pydantic import BaseModel, ConfigDict
 
-from phi.assistant.openai.file import File
-from phi.assistant.openai.exceptions import ThreadIdNotSet, MessageIdNotSet
-from phi.utils.log import logger
+from micro.assistant.openai.file import File
+from micro.assistant.openai.exceptions import ThreadIdNotSet, MessageIdNotSet
+from micro.utils.log import logger
 
 try:
     from openai import OpenAI

@@ -1,11 +1,11 @@
 from typing import Optional
 
-from phi.assistant import Assistant
-from phi.knowledge import AssistantKnowledge
-from phi.llm.mistral import Mistral
-from phi.embedder.mistral import MistralEmbedder
-from phi.vectordb.pgvector import PgVector2
-from phi.storage.assistant.postgres import PgAssistantStorage
+from micro.assistant import Assistant
+from micro.knowledge import AssistantKnowledge
+from micro.llm.mistral import Mistral
+from micro.embedder.mistral import MistralEmbedder
+from micro.vectordb.pgvector import PgVector2
+from micro.storage.assistant.postgres import PgAssistantStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 

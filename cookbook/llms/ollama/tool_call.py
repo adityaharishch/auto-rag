@@ -1,6 +1,6 @@
-from phi.assistant import Assistant
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.llm.ollama import OllamaTools
+from micro.assistant import Assistant
+from micro.tools.duckduckgo import DuckDuckGo
+from micro.llm.ollama import OllamaTools
 
 
 assistant = Assistant(

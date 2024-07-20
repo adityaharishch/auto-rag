@@ -1,7 +1,7 @@
 from os import getenv
 from typing import Optional, Dict, Any
-from phi.utils.log import logger
-from phi.llm.openai.like import OpenAILike
+from micro.utils.log import logger
+from micro.llm.openai.like import OpenAILike
 
 try:
     from openai import AzureOpenAI as AzureOpenAIClient

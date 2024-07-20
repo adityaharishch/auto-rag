@@ -1,5 +1,5 @@
-from phi.assistant import Assistant
-from phi.tools.duckdb import DuckDbTools
+from micro.assistant import Assistant
+from micro.tools.duckdb import DuckDbTools
 
 assistant = Assistant(
     tools=[DuckDbTools()],

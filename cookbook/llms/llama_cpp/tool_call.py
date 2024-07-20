@@ -1,6 +1,6 @@
-from phi.assistant import Assistant
-from phi.llm.openai.like import OpenAILike
-from phi.tools.duckduckgo import DuckDuckGo
+from micro.assistant import Assistant
+from micro.llm.openai.like import OpenAILike
+from micro.tools.duckduckgo import DuckDuckGo
 
 
 assistant = Assistant(
